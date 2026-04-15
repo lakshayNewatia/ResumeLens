@@ -24,11 +24,11 @@ export default function UploadZone({ file, setFile, onAnalyse }) {
   return (
     <div
       {...getRootProps()}
-      className={`group upload-zone border-2 border-dashed rounded-[2.5rem] p-16 text-center transition-all duration-500 cursor-pointer bg-white
-        ${isDragActive 
-          ? 'border-[#A584FF] bg-[#EFE7FD] shadow-[0_0_50px_rgba(165,132,255,0.25)]' 
-          : 'border-[#E0E0E0] hover:border-[#A584FF]/50 hover:bg-[#F8F9FA]'
-        }`}
+      className={`group upload-zone border-2 border-dashed rounded-[2.5rem] p-16 text-center transition-all duration-500 cursor-pointer ${
+        isDragActive 
+          ? 'border-brand-blue bg-brand-lavender/40 shadow-[0_0_50px_rgba(246,255,53,0.4)]' 
+          : 'border-black/10 hover:border-brand-blue/30 hover:bg-white hover:shadow-[0_0_60px_-25px_rgba(246,255,53,0.5)]'
+      }`}
     >
       <input {...getInputProps()} />
 
