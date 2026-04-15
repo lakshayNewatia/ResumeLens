@@ -10,18 +10,31 @@ export default {
         heading: ['Syne', 'sans-serif'],
         body: ['DM Sans', 'sans-serif'],
       },
+
       colors: {
-        // Your Website Color Scheme
         brand: {
-          dark: '#0E0E0E',      // Soft black background
-          blue: '#1A6AFF',      // Electric Blue
-          lime: '#F6FF35',      // Vibrant Yellow-Green
-          purple: '#A584FF',    // Primary Violet
-          lavender: '#CEB6F9',  // Light Violet (Hover)
-          gray: '#6E6E6E',      // Borders
-          light: '#C2C2C2',     // Subtext
+          // 🔥 Core UI
+          bg: '#0E0E0E',          // main background
+          surface: '#161616',     // cards (optional but recommended)
+          border: '#6E6E6E',
+
+          // 📝 Text hierarchy
+          text: '#FFFFFF',
+          subtext: '#C2C2C2',
+          muted: '#A5A5A5',
+
+          // 🎨 Primary accents
+          primary: '#A584FF',     // violet (main brand)
+          primaryHover: '#CEB6F9',
+
+          secondary: '#1A6AFF',   // blue
+          highlight: '#F6FF35',   // neon lime
+
+          // 🌿 soft backgrounds
+          soft: '#EFEFEF',
+          soft2: '#F3F8F0',
+          lavenderBg: '#EFE7FD',
         },
-        accent: '#1A6AFF',      // Mapping old "accent" to your new Blue
       },
     },
   },
