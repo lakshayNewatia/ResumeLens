@@ -26,54 +26,65 @@ export default function UploadZone({ file, setFile, onAnalyse }) {
   return (
     <div
       {...getRootProps()}
-      className={`upload-zone border-2 border-dashed rounded-3xl p-12 text-center transition-all ${
-        isDragActive ? 'drag-active bg-accent/5' : 'border-white/20 hover:border-white/40'
+      className={`group upload-zone border-2 border-dashed rounded-[2.5rem] p-16 text-center transition-all duration-300 cursor-pointer ${
+        isDragActive 
+          ? 'border-brand-blue bg-brand-blue/5' 
+          : 'border-brand-gray/20 hover:border-brand-blue/40 hover:bg-white/[0.02]'
       }`}
     >
       <input {...getInputProps()} />
 
-      <div className="mx-auto w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
-        <Upload className="w-8 h-8 text-accent" />
-      </div>
+      {/* Animated Icon Container */}
+      <motion.div 
+        whileHover={{ y: -8, scale: 1.05 }}
+        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+        className="mx-auto w-20 h-20 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:border-brand-blue/30 transition-colors"
+      >
+        <Upload className={`w-10 h-10 transition-colors duration-300 ${isDragActive ? 'text-brand-lime' : 'text-brand-blue'}`} />
+      </motion.div>
 
-      <p className="text-2xl font-medium mb-2">
-        {isDragActive ? 'Drop your resume here' : 'Drag & drop or click to upload'}
+      <p className="text-2xl font-semibold mb-2 text-white/90">
+        {isDragActive ? 'Drop it here' : 'Drag & drop or click to upload'}
       </p>
-      <p className="text-white/50 mb-8">PDF or DOCX • Max 5 MB</p>
+      <p className="text-brand-light/60 mb-10 text-base">PDF or DOCX • Max 5 MB</p>
 
       {file ? (
         <motion.div
-          initial={{ scale: 0.95 }}
-          animate={{ scale: 1 }}
-          className="inline-flex items-center gap-x-4 bg-white/5 rounded-3xl px-6 py-4 mb-8"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="inline-flex items-center gap-x-5 bg-white/5 border border-white/5 rounded-2xl px-6 py-4 mb-10 shadow-xl"
         >
-          <File className="w-5 h-5 text-accent" />
+          <div className="p-2 bg-brand-blue/10 rounded-lg">
+            <File className="w-6 h-6 text-brand-blue" />
+          </div>
           <div className="text-left">
-            <div className="font-medium">{file.name}</div>
-            <div className="text-xs text-white/50">
+            <div className="font-semibold text-white truncate max-w-[200px]">{file.name}</div>
+            <div className="text-sm text-brand-light/70">
               {(file.size / 1024 / 1024).toFixed(2)} MB
             </div>
           </div>
           <button
             onClick={(e) => { e.stopPropagation(); removeFile() }}
-            className="ml-auto text-white/40 hover:text-white"
+            className="ml-4 p-1 rounded-full hover:bg-white/10 text-white/30 hover:text-red-400 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </motion.div>
       ) : null}
 
-      <button
-        onClick={(e) => { e.stopPropagation(); onAnalyse() }}
-        disabled={!file}
-        className={`px-10 py-5 rounded-3xl text-lg font-medium transition-all ${
-          file
-            ? 'bg-accent text-black hover:bg-white hover:scale-105'
-            : 'bg-white/10 text-white/40 cursor-not-allowed'
-        }`}
-      >
-        Analyse My Resume
-      </button>
+      <div className="flex justify-center">
+        <button
+          onClick={(e) => { e.stopPropagation(); onAnalyse() }}
+          disabled={!file}
+          className={`px-12 py-5 rounded-2xl text-xl font-bold transition-all duration-300 transform ${
+            file
+              ? 'bg-brand-purple text-black hover:bg-brand-lavender hover:-translate-y-1 shadow-[0_10px_40px_-10px_rgba(165,132,255,0.4)] active:scale-95'
+              : 'bg-white/5 text-white/20 cursor-not-allowed border border-white/5'
+          }`}
+        >
+          Analyse My Resume
+        </button>
+      </div>
     </div>
   )
 }
