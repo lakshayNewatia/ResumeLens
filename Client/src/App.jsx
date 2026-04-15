@@ -7,7 +7,7 @@ import ProcessingScreen from './components/ProcessingScreen.jsx';
 import ResultsPage from './components/ResultsPage.jsx';
 
 function App() {
-  const [step, setStep] = useState('upload'); // 'upload' | 'processing' | 'results'
+  const [step, setStep] = useState('upload'); 
   const [file, setFile] = useState(null);
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
@@ -41,17 +41,15 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] text-white font-body">
+    /* Changed bg-[#0f0f0f] to bg-brand-dark (#0E0E0E) */
+    <div className="min-h-screen bg-brand-dark text-white font-body">
       {/* Header */}
-      <header className="border-b border-white/10">
+      <header className="border-b border-brand-gray/20">
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-x-3">
-            <Eye className="w-8 h-8 text-accent" />
+            {/* Logo Icon changed to brand-blue */}
+            <Eye className="w-8 h-8 text-brand-blue" />
             <span className="text-3xl font-semibold tracking-tight font-heading">ResumeLens</span>
-          </div>
-          <div className="text-xs px-3 py-1.5 rounded-full bg-white/5 flex items-center gap-x-1.5">
-            
-            
           </div>
         </div>
       </header>
@@ -67,13 +65,16 @@ function App() {
               className="max-w-3xl mx-auto"
             >
               <div className="text-center mb-12">
-                <h1 className="text-6xl font-semibold font-heading tracking-tighter mb-4">
+                <h1 className="text-6xl font-semibold font-heading tracking-tighter mb-4 text-white">
                   Upload your resume.<br />
-                  <span className="text-accent">Get brutally honest AI feedback.</span>
+                  {/* Changed text-accent to text-brand-blue (or text-brand-lime for high energy) */}
+                  <span className="text-brand-blue">Get brutally honest AI feedback.</span>
                 </h1>
-                <p className="text-lg text-white/60">Instant ATS scoring and expert suggestions.</p>
+                {/* Changed text color to our light gray */}
+                <p className="text-lg text-brand-light">Instant ATS scoring and expert suggestions.</p>
               </div>
 
+              {/* This component needs internal color updates too! */}
               <UploadZone file={file} setFile={setFile} onAnalyse={handleAnalyse} />
 
               {error && (
@@ -91,8 +92,6 @@ function App() {
           )}
         </AnimatePresence>
       </main>
-
-      
     </div>
   );
 }
