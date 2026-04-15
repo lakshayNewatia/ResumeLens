@@ -6,6 +6,9 @@ import UploadZone from './components/UploadZone.jsx';
 import ProcessingScreen from './components/ProcessingScreen.jsx';
 import ResultsPage from './components/ResultsPage.jsx';
 
+// ✅ ADD THIS LINE (uses Vercel env variable)
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [step, setStep] = useState('upload');
   const [file, setFile] = useState(null);
@@ -18,17 +21,25 @@ function App() {
     setError(null);
 
     const formData = new FormData();
-    formData.append('resume', file);
+    formData.append('resume', file); // ✅ must match backend
 
     try {
-      const res = await axios.post('http://localhost:5000/api/analyse', formData, {
+      // ✅ FIXED API CALL
+      const res = await axios.post(`${API_URL}/analyse`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
+
       setResults(res.data);
       setStep('results');
     } catch (err) {
-      console.error(err);
-      setError(err.response?.data?.error || 'Something went wrong. Please try again.');
+      console.error("API ERROR:", err);
+
+      setError(
+        err.response?.data?.error ||
+        err.message ||
+        'Something went wrong. Please try again.'
+      );
+
       setStep('upload');
     }
   };
@@ -42,7 +53,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#000000] font-body">
-      {/* --- CORRECTED LOGO POSITION: FAR LEFT --- */}
       <header className="border-b border-black/[0.05] bg-white">
         <div className="w-full px-8 py-5 flex items-center gap-x-3">
           <Eye className="w-8 h-8" style={{ color: '#A584FF' }} />
@@ -64,11 +74,9 @@ function App() {
             >
               <div className="text-center mb-12">
                 <h1 className="flex flex-col font-heading tracking-tighter mb-4">
-                  {/* Pure Black Line */}
                   <span className="text-4xl md:text-5xl font-bold text-black mb-2">
                     Upload your resume.
                   </span>
-                  {/* Exact Purple Hex Line */}
                   <span 
                     className="text-6xl md:text-7xl font-bold leading-[1.1]"
                     style={{ color: '#A584FF' }}
@@ -92,7 +100,9 @@ function App() {
           )}
 
           {step === 'processing' && <ProcessingScreen />}
-          {step === 'results' && results && <ResultsPage results={results} onReset={resetApp} />}
+          {step === 'results' && results && (
+            <ResultsPage results={results} onReset={resetApp} />
+          )}
         </AnimatePresence>
       </main>
     </div>
