@@ -25,7 +25,7 @@ function App() {
 
     try {
       // ✅ FIXED API CALL
-      const res = await axios.post(`${API_URL}/analyse`, formData, {
+      const res = await axios.post(`${API_URL}/api/analyse`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
