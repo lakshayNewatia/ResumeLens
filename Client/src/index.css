@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-brand-dark text-white antialiased;
-    font-family: 'DM Sans', system-ui, sans-serif;
-  }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background-color: #FFFFFF;
+}
 
-  h1, h2, h3 {
-    font-family: 'Syne', sans-serif;
-  }
+h1, h2, h3, h4 {
+  font-family: 'Syne', sans-serif;
 }
