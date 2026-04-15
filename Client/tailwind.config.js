@@ -11,7 +11,17 @@ export default {
         body: ['DM Sans', 'sans-serif'],
       },
       colors: {
-        accent: '#00d4ff',
+        // Your Website Color Scheme
+        brand: {
+          dark: '#0E0E0E',      // Soft black background
+          blue: '#1A6AFF',      // Electric Blue
+          lime: '#F6FF35',      // Vibrant Yellow-Green
+          purple: '#A584FF',    // Primary Violet
+          lavender: '#CEB6F9',  // Light Violet (Hover)
+          gray: '#6E6E6E',      // Borders
+          light: '#C2C2C2',     // Subtext
+        },
+        accent: '#1A6AFF',      // Mapping old "accent" to your new Blue
       },
     },
   },
