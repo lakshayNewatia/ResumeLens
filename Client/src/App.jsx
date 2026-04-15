@@ -41,20 +41,18 @@ function App() {
   };
 
   return (
-    /* Changed bg-[#0f0f0f] to bg-brand-dark (#0E0E0E) */
-    <div className="min-h-screen bg-brand-dark text-white font-body">
+    <div className="min-h-screen bg-brand-dark text-white font-body selection:bg-brand-blue/30">
       {/* Header */}
-      <header className="border-b border-brand-gray/20">
+      <header className="border-b border-brand-gray/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-x-3">
-            {/* Logo Icon changed to brand-blue */}
             <Eye className="w-8 h-8 text-brand-blue" />
-            <span className="text-3xl font-semibold tracking-tight font-heading">ResumeLens</span>
+            <span className="text-2xl font-bold tracking-tight font-heading">ResumeLens</span>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-12">
+      <main className="max-w-7xl mx-auto px-6 py-16">
         <AnimatePresence mode="wait">
           {step === 'upload' && (
             <motion.div
@@ -65,22 +63,29 @@ function App() {
               className="max-w-3xl mx-auto"
             >
               <div className="text-center mb-12">
-                <h1 className="text-6xl font-semibold font-heading tracking-tighter mb-4 text-white">
-                  Upload your resume.<br />
-                  {/* Changed text-accent to text-brand-blue (or text-brand-lime for high energy) */}
-                  <span className="text-brand-blue">Get brutally honest AI feedback.</span>
+                <h1 className="flex flex-col font-heading tracking-tighter mb-4">
+                  <span className="text-4xl md:text-5xl font-medium text-white/70 mb-2">
+                    Upload your resume.
+                  </span>
+                  <span className="text-6xl md:text-7xl font-bold text-brand-blue leading-[1.1]">
+                    Get brutally honest AI feedback.
+                  </span>
                 </h1>
-                {/* Changed text color to our light gray */}
-                <p className="text-lg text-brand-light">Instant ATS scoring and expert suggestions.</p>
+                <p className="text-xl text-brand-light font-light">
+                  Instant ATS scoring and expert suggestions.
+                </p>
               </div>
 
-              {/* This component needs internal color updates too! */}
               <UploadZone file={file} setFile={setFile} onAnalyse={handleAnalyse} />
 
               {error && (
-                <div className="mt-8 max-w-md mx-auto bg-red-500/10 border border-red-500/30 text-red-400 px-6 py-4 rounded-3xl text-center">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="mt-8 max-w-md mx-auto bg-red-500/10 border border-red-500/20 text-red-400 px-6 py-4 rounded-2xl text-center"
+                >
                   {error}
-                </div>
+                </motion.div>
               )}
             </motion.div>
           )}
